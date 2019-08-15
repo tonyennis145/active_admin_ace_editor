@@ -1,28 +1,24 @@
-# ActiveAdmin Ace Editor [![Gem Version](https://badge.fury.io/rb/activeadmin_ace_editor.svg)](https://badge.fury.io/rb/activeadmin_ace_editor)
+# ActiveAdmin Ace Editor
 
-An Active Admin plugin to use [Ace Rich Text Editor](https://github.com/acejs/ace)
-
-![screenshot](screenshot.jpg)
+An Active Admin plugin to use [Ace Editor](https://ace.c9.io/)
 
 ## Install
 
-- Update your Gemfile: `gem 'activeadmin_ace_editor'` (and execute *bundle*)
-- Add at the end of your ActiveAdmin styles (_app/assets/stylesheets/active_admin.scss_):
-```css
-@import 'activeadmin/ace_editor_input';
-```
+- Update your Gemfile: `gem 'activeadmin_ace_editor'` (and execute _bundle_)
 - Add at the end of your ActiveAdmin javascripts (_app/assets/javascripts/active_admin.js_):
+
 ```js
-//= require activeadmin/ace_editor/ace
-//= require activeadmin/ace_editor_input
+#= require activeadmin/ace_editor_input
+#= require activeadmin/ace-src-min-noconflict/ace
 ```
+
 - Use the input with `as: :ace_editor` in Active Admin model conf
 
-Why 2 separated scripts? In this way you can include a different version of *ace editor* if you like.
+Why 2 separated scripts? In this way you can include a different version of _ace editor_ if you like.
 
 ## Options
 
-**data-options**: permits to set *ace editor* options directly - see [options list](https://acejs.com/docs/configuration/)
+**data-options-mode**: sets the language for the editor. You must also require the corresponding the mode file in ActiveAdmin javascripts
 
 ## Examples
 
@@ -31,32 +27,16 @@ Why 2 separated scripts? In this way you can include a different version of *ace
   form do |f|
     f.inputs 'Article' do
       f.input :title
-      f.input :description, as: :ace_editor
+      f.input :description, as: :ace_editor, input_html: {data: {"options-mode": "json"}}
       f.input :published
     end
     f.actions
   end
 ```
 
-Toolbar buttons configuration:
+## Based on
 
-```ruby
-f.input :description, as: :ace_editor, input_html: {data: {options: {modules: {toolbar: [['bold', 'italic', 'underline'], ['link']]}, placeholder: 'Type something...', theme: 'snow'}}}
-```
-
-## Notes
-
-- Upload functions (Images, Documents, Files, etc.) are not implemented yet
-
-## Do you like it? Star it!
-
-If you use this component just star it. A developer is more motivated to improve a project when there is some interest.
-
-Take a look at [other ActiveAdmin components](https://github.com/blocknotes?utf8=✓&tab=repositories&q=activeadmin&type=source) that I made if you are curious.
-
-## Contributors
-
-- [Mattia Roccoberton](http://blocknot.es) - creator, maintainer
+Based on the [Active Admin Quill Editor](https://github.com/blocknotes/activeadmin_quill_editor)
 
 ## License
 
