@@ -7,7 +7,7 @@ module Formtastic
         input_wrapping do
           label_html <<
           template.content_tag(:div, input_html_options.merge(editor_options)) do
-            object.send(method).try :html_safe
+            object.send(method)
           end <<
           builder.hidden_field(input_name)
         end
